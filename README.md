@@ -1,6 +1,6 @@
 # KK Single Page
 
-Single Page React application demo with Spring Boot (Kotlin) + Postegre.
+Single Page React application demo with Spring Boot (Kotlin) + Postegre backend. Including simple JWT user autentication.
 
 ```bash
 APP: kjc-int
