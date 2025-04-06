@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/")
-class HelloController {
+class HomeController {
     @GetMapping
     fun home(): String {
-        return "Hello from Spring Boot!"
+        return "This is Spring Boot Home!"
     }
 }

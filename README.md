@@ -58,7 +58,8 @@ cd /opt/kjc/int/kk-single-page
 ├── src/                     
 │   ├── main   
 │   │   ├── kotlin/com/katariinatuulia/com/kk_single_page 
-│   │   │   ├── HelloController.kt
+│   │   │   ├── HomeContainer.kt
+│   │   │   ├── JwtAuthentication.kt
 │   │   │   └── KkSinglePageApplication.kt
 │   │   └── resources
 │   │       ├── static
