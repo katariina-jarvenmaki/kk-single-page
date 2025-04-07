@@ -77,6 +77,15 @@ cd /opt/kjc/int/kk-single-page
 └── settings.gradle
 ```
 
+### Program diagram:
+```bash
+/opt/kjc/int/kk-single-page/
+├── Frontend application
+├── Auth Server
+├── Resource Server
+└── Security
+```
+
 ### Version info:
 
 Tested with Ubuntu 20.04, springboot 3.4.4, java 21 and kotlin 1.9.25

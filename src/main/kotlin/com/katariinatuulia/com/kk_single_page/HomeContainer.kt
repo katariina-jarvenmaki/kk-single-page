@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController
 class HomeController {
     @GetMapping
     fun home(): String {
-        return "This is Spring Boot Home!"
+        return "Loading login form..."
     }
 }
