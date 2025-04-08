@@ -25,7 +25,6 @@ import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import java.util.*
 
-
 //******************** JWT TOKENS ********************//
 
 @Component
@@ -101,6 +100,7 @@ class SecurityConfig(private val jwtFilter: JwtFilter) {
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/api/public/**").permitAll() // Open endpoints
+                    .requestMatchers("/api/data/**").authenticated() // Secured endpoints
                     .anyRequest().authenticated() // All else needs token
             }
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java) // Use your custom filter
@@ -132,3 +132,4 @@ class SecureController {
         return mapOf("message" to "Hello, $user! You have access.")
     }
 }
+

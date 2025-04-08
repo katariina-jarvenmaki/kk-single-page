@@ -71,6 +71,21 @@ Access with token:
 curl -H "Authorization: Bearer YOUR_TOKEN_HERE" http://localhost:8080/api/secure/data -w "\n"
 ```
 
+List data without filter with auth:
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" http://localhost:8080/api/data -w "\n"
+```
+
+List data with Language-filter with auth:
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" http://localhost:8080/api/data?category=Language -w "\n"
+```
+
+List data sorted by name with auth:
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" http://localhost:8080/api/data?sortBy=name&sortOrder=desc -w "\n"
+```
+
 ## Troubleshooting
 
 If port is in use:
