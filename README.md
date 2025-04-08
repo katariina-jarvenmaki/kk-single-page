@@ -66,7 +66,10 @@ cd /opt/kjc/int/kk-single-page
 │   │       ├── templates
 │   │       └── application.properties
 │   └── test/kotlin/com/katariinatuulia/com/kk_single_page
-│       └── KkSinglePageApplicationTests.kt
+│       ├── JwtTokensTest.kt
+│       ├── JwtUnitTest.kt
+│       ├── KkSinglePageApplicationTests.kt
+│       └── SimpleTest.kt
 ├── .gitattributes
 ├── .gitignore
 ├── build.gradle

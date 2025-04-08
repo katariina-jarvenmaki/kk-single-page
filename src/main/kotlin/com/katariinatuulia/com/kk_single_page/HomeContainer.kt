@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/")
 class HomeController {
+
     @GetMapping
     fun home(): String {
         return "Loading login form..."
     }
+    
 }

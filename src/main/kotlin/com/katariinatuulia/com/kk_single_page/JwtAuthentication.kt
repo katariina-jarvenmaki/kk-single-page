@@ -3,12 +3,18 @@ package com.katariinatuulia.com.kk_single_page
 //******************** IMPORTS ********************//
 
 import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.Claims
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
-import io.jsonwebtoken.Claims
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 import jakarta.servlet.FilterChain
@@ -76,3 +82,26 @@ class JwtFilter(private val jwtTokens: JwtTokens) : OncePerRequestFilter() {
         filterChain.doFilter(request, response)
     }
 }
+
+//******************** SECURITY CONFIG ********************//
+
+@Configuration
+class SecurityConfig(private val jwtFilter: JwtFilter) {
+
+    @Bean
+    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+
+        http
+            .csrf { it.disable() } // No CSRF for APIs
+            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) } // JWT means stateless
+            .authorizeHttpRequests {
+                it
+                    .requestMatchers("/api/public/**").permitAll() // Open endpoints
+                    .anyRequest().authenticated() // All else needs token
+            }
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java) // Use your custom filter
+
+        return http.build()
+    }
+}
+
