@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import com.katariinatuulia.com.kk_single_page.JwtTokens
 
 @SpringBootTest
-class JwtTokensTest {
+class JwtUnitTest {
 
     @Autowired
     lateinit var jwtTokens: JwtTokens
