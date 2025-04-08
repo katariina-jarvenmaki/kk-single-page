@@ -81,7 +81,10 @@ cd /opt/kjc/int/kk-single-page
 ```bash
 /opt/kjc/int/kk-single-page/
 ├── Frontend application
-├── Auth Server
+│   └── Login form
+├── Authentication
+│   ├── Tokens
+│   └── Login form
 ├── Resource Server
 └── Security
 ```
