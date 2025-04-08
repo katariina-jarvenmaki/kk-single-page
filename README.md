@@ -86,6 +86,11 @@ List data sorted by name with auth:
 curl -H "Authorization: Bearer YOUR_TOKEN_HERE" http://localhost:8080/api/data?sortBy=name&sortOrder=desc -w "\n"
 ```
 
+Search a singular record by id with auth:
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" http://localhost:8080/api/data/4 -w "\n"
+```
+
 ## Troubleshooting
 
 If port is in use:

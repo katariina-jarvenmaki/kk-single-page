@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.http.ResponseEntity
 
 data class DataEntry(val id: Int, val name: String, val category: String)
 
@@ -15,7 +17,7 @@ class DataController {
         DataEntry(1, "Linux", "System"),
         DataEntry(2, "React", "Language"),
         DataEntry(3, "Jpg", "Filetype"),
-        DataEntry(2, "Kotlin", "Language"),
+        DataEntry(4, "Kotlin", "Language"),
         DataEntry(5, "Windows", "System"),
         DataEntry(6, "Java", "Language"),
         DataEntry(7, "Typescript", "Language"),
@@ -27,11 +29,10 @@ class DataController {
     @GetMapping
     fun listData(
         @RequestParam(required = false) category: String?,
-        @RequestParam(required = false) name: String?,     
+        @RequestParam(required = false) name: String?,
         @RequestParam(required = false) sortBy: String?,
         @RequestParam(required = false) sortOrder: String?
     ): List<DataEntry> {
-        println("category: $category, name: $name")
 
         var filteredData = data.toList()
 
@@ -59,4 +60,16 @@ class DataController {
 
         return filteredData
     }
+
+    // Search for single entry
+    @GetMapping("/{id}")
+    fun getById(@PathVariable id: Int): ResponseEntity<DataEntry> {
+        val entry = data.find { it.id == id }
+        return if (entry != null) {
+            ResponseEntity.ok(entry)
+        } else {
+            ResponseEntity.notFound().build()
+        }
+    }
+
 }
