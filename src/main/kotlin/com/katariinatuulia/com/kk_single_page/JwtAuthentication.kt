@@ -8,6 +8,10 @@ import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.filter.OncePerRequestFilter
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
@@ -16,11 +20,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.stereotype.Component
-import org.springframework.web.filter.OncePerRequestFilter
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import java.util.*
+
 
 //******************** JWT TOKENS ********************//
 
@@ -105,3 +109,26 @@ class SecurityConfig(private val jwtFilter: JwtFilter) {
     }
 }
 
+//******************** ENDPOINTS ********************//
+
+@RestController
+@RequestMapping("/api/public")
+class AuthController(private val jwtTokens: JwtTokens) {
+
+    @GetMapping("/token")
+    fun getToken(): Map<String, String> {
+        val token = jwtTokens.generate()
+        return mapOf("token" to token)
+    }
+}
+
+@RestController
+@RequestMapping("/api/secure")
+class SecureController {
+
+    @GetMapping("/data")
+    fun securedData(): Map<String, String> {
+        val user = SecurityContextHolder.getContext().authentication.name
+        return mapOf("message" to "Hello, $user! You have access.")
+    }
+}

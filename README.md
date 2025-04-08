@@ -46,7 +46,48 @@ cd /opt/kjc/int/kk-single-page
 3. **Run the project**:
 
 ```bash
-./gradlew clean build
+./gradlew bootRun
+```
+
+4. **Using the endpoints**:
+
+First navigate with console into the project:
+```bash
+cd /opt/kjc/int/kk-single-page
+```
+
+Request token:
+```bash
+curl http://localhost:8080/api/public/token -w "\n"
+```
+
+Trying to access without token:
+```bash
+curl http://localhost:8080/api/secure/data -w "\n"
+```
+
+Access with token:
+```bash
+curl -H "Authorization: Bearer YOUR_TOKEN_HERE" http://localhost:8080/api/secure/data -w "\n"
+```
+
+## Troubleshooting
+
+If port is in use:
+
+Run this in terminal:
+```bash
+sudo lsof -i :8080
+```
+
+Then this to show the port:
+```bash
+java 12345 youruser 123u IPv6 0x.... TCP *:http (LISTEN)
+```
+
+Then destroy it:
+```bash
+sudo kill -9 12345
 ```
 
 ### Folder structure:
