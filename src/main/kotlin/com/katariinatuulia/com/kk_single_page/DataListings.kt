@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
@@ -85,4 +86,15 @@ class DataController {
         return ResponseEntity("Data added", HttpStatus.CREATED)
     }
     
+    @DeleteMapping("/{id}")
+    fun deleteData(@PathVariable id: Int): ResponseEntity<String> {
+        val removed = data.removeIf { it.id == id }
+
+        return if (removed) {
+            ResponseEntity("Data with ID $id deleted.", HttpStatus.OK)
+        } else {
+            ResponseEntity("Data with ID $id not found.", HttpStatus.NOT_FOUND)
+        }
+    }
+
 }

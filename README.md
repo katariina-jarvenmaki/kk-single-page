@@ -96,6 +96,11 @@ Add a record to the list with auth:
 curl -X POST -H "Authorization: Bearer YOUR_TOKEN" -H "Content-Type: application/json" -d '{"id":11,"name":"Javascript","category":"Language"}' http://localhost:8080/api/data -w "\n"
 ```
 
+Delete a record from the list with auth:
+```bash
+curl -X DELETE -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8080/api/data/99 -w "\n"
+```
+
 ## Troubleshooting
 
 If port is in use:
