@@ -91,6 +91,11 @@ Search a singular record by id with auth:
 curl -H "Authorization: Bearer YOUR_TOKEN_HERE" http://localhost:8080/api/data/4 -w "\n"
 ```
 
+Add a record to the list with auth:
+```bash
+curl -X POST -H "Authorization: Bearer YOUR_TOKEN" -H "Content-Type: application/json" -d '{"id":11,"name":"Javascript","category":"Language"}' http://localhost:8080/api/data -w "\n"
+```
+
 ## Troubleshooting
 
 If port is in use:

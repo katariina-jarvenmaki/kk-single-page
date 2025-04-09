@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.http.ResponseEntity
+import org.springframework.http.HttpStatus
 
 data class DataEntry(val id: Int, val name: String, val category: String)
 
@@ -72,4 +75,14 @@ class DataController {
         }
     }
 
+    @PostMapping
+    fun addData(@RequestBody newEntry: DataEntry): ResponseEntity<String> {
+        if (data.any { it.id == newEntry.id }) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("ID already exists.")
+        }
+
+        data.add(newEntry)
+        return ResponseEntity("Data added", HttpStatus.CREATED)
+    }
+    
 }
