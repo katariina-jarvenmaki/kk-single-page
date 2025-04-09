@@ -101,6 +101,11 @@ Delete a record from the list with auth:
 curl -X DELETE -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8080/api/data/99 -w "\n"
 ```
 
+Run the Healthcheck endpoint
+```bash
+curl -v http://localhost:8080/api/healthcheck -w "\n"
+```
+
 ## Troubleshooting
 
 If port is in use:
@@ -129,6 +134,8 @@ sudo kill -9 12345
 ├── src/                     
 │   ├── main   
 │   │   ├── kotlin/com/katariinatuulia/com/kk_single_page 
+│   │   │   ├── DataListings.kt
+│   │   │   ├── HealthController.kt
 │   │   │   ├── HomeContainer.kt
 │   │   │   ├── JwtAuthentication.kt
 │   │   │   └── KkSinglePageApplication.kt
@@ -157,10 +164,12 @@ sudo kill -9 12345
 ├── Frontend application
 │   └── Login form
 ├── Authentication
-│   ├── Tokens
-│   └── Login form
+│   ├── Filter
+│   └── Tokens
 ├── Resource Server
+│   └── Endpoints
 └── Security
+    └── Security Config
 ```
 
 ### Version info:
