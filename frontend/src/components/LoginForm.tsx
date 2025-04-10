@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -9,8 +9,14 @@ const LoginForm = () => {
 
   const login = async () => {
     try {
-      const res = await fetch('/api/public/token');
+      const res = await fetch('/api/auth/login', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+
       if (!res.ok) throw new Error("Login failed");
+
       const data = await res.json();
       localStorage.setItem("jwt", data.token);
       navigate("/dashboard");
@@ -20,26 +26,24 @@ const LoginForm = () => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto', padding: '2rem' }}>
+    <div style={{ maxWidth: "400px", margin: "auto", padding: "2rem" }}>
       <h2>Login</h2>
       <input
         type="text"
         placeholder="Username"
         value={username}
-        disabled
-        style={{ display: 'block', marginBottom: '1rem', width: '100%' }}
-        onChange={e => setUsername(e.target.value)}
+        onChange={(e) => setUsername(e.target.value)}
+        style={{ display: "block", marginBottom: "1rem", width: "100%" }}
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
-        disabled
-        style={{ display: 'block', marginBottom: '1rem', width: '100%' }}
-        onChange={e => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
+        style={{ display: "block", marginBottom: "1rem", width: "100%" }}
       />
       <button onClick={login}>Login</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };

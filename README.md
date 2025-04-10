@@ -131,6 +131,24 @@ sudo kill -9 12345
 ├── gradle/wrapper
 │   ├── gradle-wrapper.jar
 │   └── gradle-wrapper.properties
+├── frontend/                     
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── AuthController.java
+│   │   │   ├── Layout.tsx
+│   │   │   └── LoginForm.tsx
+│   │   ├── pages/
+│   │   │   ├── Dashboard.tsx
+│   │   │   └── Home.tsx
+│   │   ├── App.css
+│   │   ├── App.test.tsx
+│   │   ├── App.tsx
+│   │   └── etc...
+│   ├── .gitignore
+│   ├── package-lock.json
+│   ├── README.md
+│   └── tsconfig.json
 ├── src/                     
 │   ├── main   
 │   │   ├── kotlin/com/katariinatuulia/com/kk_single_page 
@@ -175,4 +193,3 @@ sudo kill -9 12345
 ### Version info:
 
 Tested with Ubuntu 20.04, springboot 3.4.4, java 21 and kotlin 1.9.25
-
