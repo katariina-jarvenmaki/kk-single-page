@@ -99,7 +99,7 @@ class SecurityConfig(private val jwtFilter: JwtFilter) {
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) } // JWT means stateless
             .authorizeHttpRequests {
                 it
-                .requestMatchers("/api/public/**", "/api/healthcheck").permitAll() // Open endpoints
+                .requestMatchers("/", "/index.html", "/static/**", "/*.html", "/api/public/**", "/api/healthcheck").permitAll() // Open endpoints
                     .requestMatchers("/api/data/**").authenticated() // Secured endpoints
                     .anyRequest().authenticated() // All else needs token
             }
