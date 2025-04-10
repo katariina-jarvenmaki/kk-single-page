@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Dashboard = () => {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
     axios.get('/api/data', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => setData(res.data))
-      .catch(err => setError("Unauthorized or error"));
-  }, []);
+      .catch(() => {
+        setError("Unauthorized or error");
+        navigate("/");
+      });
+  }, [navigate]);
 
   return (
     <div style={{ padding: '2rem' }}>
