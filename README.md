@@ -53,9 +53,11 @@ cd /opt/kjc/int/kk-single-page
 
 Go to: http://localhost:3000/
 
-**Test accounts:**
+```bash
+Test accounts:
  - Username: user, password: pass
  - Username: admin, password: admin123
+ ```
 
 5. **Using the endpoints on terminal**:
 

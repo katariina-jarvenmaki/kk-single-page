@@ -26,6 +26,25 @@ const Dashboard = () => {
 
   return (
     <div style={{ padding: '2rem' }}>
+        <button
+          onClick={() => {
+            localStorage.removeItem("jwt");
+            navigate("/");
+          }}
+          style={{
+            position: "absolute",
+            top: "1rem",
+            right: "1rem",
+            padding: "0.5rem 1rem",
+            backgroundColor: "#e63946",
+            color: "#fff",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer"
+          }}
+        >
+          Logout
+      </button>
       <h2>Dashboard</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <pre>{data && JSON.stringify(data, null, 2)}</pre>
