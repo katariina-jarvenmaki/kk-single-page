@@ -162,8 +162,6 @@ sudo kill -9 12345
 │   │       ├── templates
 │   │       └── application.properties
 │   └── test/kotlin/com/katariinatuulia/com/kk_single_page
-│       ├── JwtTokensTest.kt
-│       ├── JwtUnitTest.kt
 │       ├── KkSinglePageApplicationTests.kt
 │       └── SimpleTest.kt
 ├── .gitattributes
