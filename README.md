@@ -49,7 +49,15 @@ cd /opt/kjc/int/kk-single-page
 ./gradlew bootRun
 ```
 
-4. **Using the endpoints**:
+4. **To login on frontend**:
+
+Go to: http://localhost:3000/
+
+**Test accounts:**
+ - Username: user, password: pass
+ - Username: admin, password: admin123
+
+5. **Using the endpoints on terminal**:
 
 First navigate with console into the project:
 ```bash

@@ -155,9 +155,16 @@ class AuthLoginController(private val jwtTokens: JwtTokens) {
 
     @PostMapping("/login")
     fun login(@RequestBody authRequest: AuthRequest): ResponseEntity<Any> {
+
         println("Login attempt: ${authRequest.username}")
-    
-        if (authRequest.username == "user" && authRequest.password == "pass") {
+
+        val validUsers = mapOf(
+            "user" to "pass",
+            "admin" to "admin123",
+            "katariina" to "devpass"
+        )
+        
+        if (validUsers[authRequest.username] == authRequest.password) {
             val token = jwtTokens.generate(authRequest.username)
             return ResponseEntity.ok(mapOf("token" to token))
         } else {
@@ -188,3 +195,4 @@ data class AuthRequest(
     val username: String,
     val password: String
 )
+
