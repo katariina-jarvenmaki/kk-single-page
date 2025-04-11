@@ -6,12 +6,17 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
+import org.springframework.http.ResponseEntity
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.filter.OncePerRequestFilter
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
@@ -31,8 +36,8 @@ import java.util.*
 class JwtTokens {
 
     private val signer = Keys.secretKeyFor(SignatureAlgorithm.HS256)
-
-    fun generate(): String {
+    
+    fun generate(username: String): String {
         val now = System.currentTimeMillis()
         val expiry = now + 1000 * 60 * 60 // 1 hour
 
@@ -99,9 +104,17 @@ class SecurityConfig(private val jwtFilter: JwtFilter) {
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) } // JWT means stateless
             .authorizeHttpRequests {
                 it
-                .requestMatchers("/", "/index.html", "/static/**", "/*.html", "/api/public/**", "/api/healthcheck").permitAll() // Open endpoints
-                    .requestMatchers("/api/data/**").authenticated() // Secured endpoints
-                    .anyRequest().authenticated() // All else needs token
+                .requestMatchers(
+                    "/", 
+                    "/index.html", 
+                    "/static/**", 
+                    "/*.html", 
+                    "/api/public/**", 
+                    "/api/healthcheck", 
+                    "/api/auth/login"
+                ).permitAll()
+                .requestMatchers("/api/data/**").authenticated() // Secured endpoints
+                .anyRequest().authenticated() // All else needs token
             }
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java) // Use your custom filter
 
@@ -117,9 +130,10 @@ class AuthController(private val jwtTokens: JwtTokens) {
 
     @GetMapping("/token")
     fun getToken(): Map<String, String> {
-        val token = jwtTokens.generate()
+        val token = jwtTokens.generate("testuser") // or any default/test username
         return mapOf("token" to token)
     }
+
 }
 
 @RestController
@@ -133,3 +147,44 @@ class SecureController {
     }
 }
 
+//******************** LOGIN ********************//
+
+@RestController
+@RequestMapping("/api/auth")
+class AuthLoginController(private val jwtTokens: JwtTokens) {
+
+    @PostMapping("/login")
+    fun login(@RequestBody authRequest: AuthRequest): ResponseEntity<Any> {
+        println("Login attempt: ${authRequest.username}")
+    
+        if (authRequest.username == "user" && authRequest.password == "pass") {
+            val token = jwtTokens.generate(authRequest.username)
+            return ResponseEntity.ok(mapOf("token" to token))
+        } else {
+            return ResponseEntity.status(401).body("Invalid credentials")
+        }
+    }    
+}
+
+//******************** CORS ********************//
+
+@Configuration
+class CorsConfig {
+    @Bean
+    fun corsConfigurer(): WebMvcConfigurer {
+        return object : WebMvcConfigurer {
+            override fun addCorsMappings(registry: CorsRegistry) {
+                registry.addMapping("/**")
+                    .allowedOrigins("http://localhost:3000")
+                    .allowedMethods("*")
+            }
+        }
+    }
+}
+
+//******************** DATA CLASSES ********************//
+
+data class AuthRequest(
+    val username: String,
+    val password: String
+)
