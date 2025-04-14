@@ -1,0 +1,54 @@
+// styles.scss
+$primary-color: rgb(102, 69, 158); //  66459e
+$background-color: rgb(156, 184, 195); // 9cb8c3
+$shadow-color: rgb(32, 30, 44); // 201e2c
+// yellow f0c11b
+// orange e76219
+
+/*** CLEAN UP ***/
+
+*:first-child {
+    margin-top: 0;
+}
+
+/*** STRUCTURE ***/
+
+body {
+    background-color: $background-color;
+}
+
+nav {
+    padding: 2rem;
+    background: $primary-color !important;
+    z-index: 10;
+    float: left;
+    border-radius: 0 0 15px 0;
+    position: relative;
+    box-shadow: 5px 5px 20px -7px $shadow-color;
+}
+
+nav a {
+    color: #fff;
+    padding: 0.5rem;
+}
+
+/*** LOGIN ***/
+
+#login-container  {
+    padding-top: 100px;
+}
+
+#login-container div {
+    padding: 5rem 10rem 10rem;
+    background: $primary-color !important;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 5px 5px 20px -7px $shadow-color;
+}
+
+button {
+    padding: 2rem;
+    background: $primary-color !important;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px -7px $shadow-color;
+}

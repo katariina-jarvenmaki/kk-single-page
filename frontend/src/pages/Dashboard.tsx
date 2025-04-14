@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+// Import styles
+import '../styles/styles.scss';
+
 const Dashboard = () => {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState("");

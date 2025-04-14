@@ -1,11 +1,16 @@
 import React from 'react';
 import LoginForm from '../components/LoginForm';
 
+// Import styles
+import '../styles/styles.scss';
+
 const Home = () => {
   return (
     
-    <div style={{ padding: '2rem' }}>
+    <div id="login-container">
+    
       <LoginForm />
+    
     </div>
   );
 };
