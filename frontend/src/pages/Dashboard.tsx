@@ -3,20 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // Import styles
-import '../styles/styles.scss';
+import '../styles/styles.sass';
 
+// Dashboard-view
 const Dashboard = () => {
+
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    // Get Jwt token from localStorage
     const token = localStorage.getItem("jwt");
     if (!token) {
       navigate("/");
       return;
     }
 
+    // Axios data request
     axios.get('/api/data', {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -27,31 +32,28 @@ const Dashboard = () => {
       });
   }, [navigate]);
 
+  // Dashboard-view
   return (
-    <div style={{ padding: '2rem' }}>
-        <button
-          onClick={() => {
-            localStorage.removeItem("jwt");
-            navigate("/");
-          }}
-          style={{
-            position: "absolute",
-            top: "1rem",
-            right: "1rem",
-            padding: "0.5rem 1rem",
-            backgroundColor: "#e63946",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer"
-          }}
-        >
-          Logout
+
+    <div id="dashboard">
+
+      <button 
+        onClick={() => {
+          localStorage.removeItem("jwt");
+          navigate("/");
+        }} 
+        className="logout">
+        Logout
       </button>
-      <h2>Dashboard</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <pre>{data && JSON.stringify(data, null, 2)}</pre>
+
+      <div id="dashboard-container">
+        <h2>Dashboard</h2>
+        {error && <p className="error">{error}</p>}
+        <pre>{data && JSON.stringify(data, null, 2)}</pre>
+      </div>
+
     </div>
+
   );
 };
 

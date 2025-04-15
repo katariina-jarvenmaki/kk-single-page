@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Import styles
-import '../styles/styles.scss';
+import '../styles/styles.sass';
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");

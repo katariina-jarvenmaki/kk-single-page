@@ -1,0 +1,87 @@
+// styles.sass
+$primary-color: rgb(102, 69, 158) // 66459e
+$background-color: rgb(156, 184, 195) // 9cb8c3
+$shadow-color: rgb(32, 30, 44) // 201e2c
+$highlight-color1: #f0c11b // f0c11b
+$highlight-color2: #e76219 // e76219
+
+/*** CLEAN UP ***/
+
+*:first-child
+  margin-top: 0
+
+/*** TYPOGRAPHY ***/
+
+h2 
+  color: $highlight-color1
+
+/*** GENERAL ***/
+
+button
+  padding: 2rem
+  background: $highlight-color1
+  border-radius: 10px
+  box-shadow: 5px 5px 20px -7px $shadow-color
+  padding: 0.8rem 2rem
+  color: 7px $shadow-color
+  cursor: pointer
+
+button:hover
+  background: $highlight-color2
+
+/*** STRUCTURE ***/
+
+body
+  background-color: $background-color
+  background-image: url(../images/background-graphic.jpg)
+  background-position: center center 
+  background-repeat: no-repeat 
+  background-size: cover
+  height: 100vh
+
+nav
+  padding: 2rem
+  background: $primary-color !important
+  z-index: 10
+  float: left
+  border-radius: 0 0 15px 0
+  position: relative
+  box-shadow: 5px 5px 20px -7px $shadow-color
+  border-bottom: 3px solid $highlight-color1
+
+  a
+    color: #fff
+    padding: 0.5rem
+    font-weight: bold
+    text-decoration: none
+
+  a:hover
+   text-shadow: 1px 1px 2px $shadow-color
+   color: $highlight-color2
+
+/*** LOGIN ***/
+
+#login-container
+  padding-top: 120px
+
+  div
+    padding: 5rem 10rem 10rem
+    background: $primary-color !important
+    border-radius: 15px
+    position: relative
+    box-shadow: 5px 5px 20px -7px $shadow-color
+    border-bottom: 3px solid $highlight-color1
+
+  input 
+    padding: .5rem 0.25rem
+    border-radius: 5px
+    position: relative
+    box-shadow: 5px 5px 20px -7px $shadow-color
+
+button.logout
+  position: absolute
+  top: 1rem
+  right: 1rem
+
+.error 
+  color: red
