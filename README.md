@@ -138,50 +138,59 @@ sudo kill -9 12345
 ### Folder structure:
 ```bash
 /opt/kjc/int/kk-single-page/
-├── gradle/wrapper
-│   ├── gradle-wrapper.jar
-│   └── gradle-wrapper.properties
+├── backend/
+│   ├── gradle/wrapper
+│   │   ├── gradle-wrapper.jar
+│   │   └── gradle-wrapper.properties
+│   ├── src/                     
+│   │   ├── main/  
+│   │   │   ├── kotlin/com/katariinatuulia/com/kk_single_page/ 
+│   │   │   │   ├── DataListings.kt
+│   │   │   │   ├── HealthController.kt
+│   │   │   │   ├── HomeContainer.kt
+│   │   │   │   ├── JwtAuthentication.kt
+│   │   │   │   └── KkSinglePageApplication.kt
+│   │   │   └── resources/
+│   │   │       └── application.properties                    
+│   │   └── test/kotlin/com/katariinatuulia/com/kk_single_page/
+│   │       ├── KkSinglePageApplicationTests.kt
+│   │       └── SimpleTest.kt
+│   ├── .gitattributes
+│   ├── .gitignore
+│   ├── build.gradle
+│   ├── gradlew
+│   ├── gradlew.bat
+│   └── settings.gradle
 ├── frontend/                     
 │   ├── public/
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   └── etc..
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── AuthController.java
 │   │   │   ├── Layout.tsx
 │   │   │   └── LoginForm.tsx
+│   │   ├── images/
+│   │   │   └── background-graphic.jpg
 │   │   ├── pages/
 │   │   │   ├── Dashboard.tsx
 │   │   │   └── Home.tsx
+│   │   ├── styles/
+│   │   │   ├── styles.sass
+│   │   │   └── tailwind.css
 │   │   ├── App.css
 │   │   ├── App.test.tsx
 │   │   ├── App.tsx
 │   │   └── etc...
 │   ├── .gitignore
 │   ├── package-lock.json
+│   ├── package.json
 │   ├── README.md
 │   └── tsconfig.json
-├── src/                     
-│   ├── main   
-│   │   ├── kotlin/com/katariinatuulia/com/kk_single_page 
-│   │   │   ├── DataListings.kt
-│   │   │   ├── HealthController.kt
-│   │   │   ├── HomeContainer.kt
-│   │   │   ├── JwtAuthentication.kt
-│   │   │   └── KkSinglePageApplication.kt
-│   │   └── resources
-│   │       ├── static
-│   │       ├── templates
-│   │       └── application.properties
-│   └── test/kotlin/com/katariinatuulia/com/kk_single_page
-│       ├── KkSinglePageApplicationTests.kt
-│       └── SimpleTest.kt
-├── .gitattributes
-├── .gitignore
-├── build.gradle
-├── gradlew
-├── gradlew.bat
-├── HELP.md
-├── README.md
-└── settings.gradle
+├── usage-examples/
+│   └── multiple screenshots...
+└── README.md
 ```
 
 ### Program diagram:
