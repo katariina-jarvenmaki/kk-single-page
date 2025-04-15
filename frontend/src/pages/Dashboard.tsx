@@ -35,7 +35,7 @@ const Dashboard = () => {
   // Dashboard-view
   return (
 
-    <div id="dashboard">
+    <div className="container">
 
       <button 
         onClick={() => {
@@ -46,10 +46,35 @@ const Dashboard = () => {
         Logout
       </button>
 
-      <div id="dashboard-container">
+      <div className="section text-red-500 text-xl">
+
         <h2>Dashboard</h2>
+
         {error && <p className="error">{error}</p>}
-        <pre>{data && JSON.stringify(data, null, 2)}</pre>
+
+        {data && (
+          <div className="overflow-x-auto mt-4">
+            <table className="min-w-full border border-highlight-1">
+              <thead className="bg-highlight-1 text-white">
+                <tr>
+                  <th className="px-4 py-2 border border-highlight-1 text-left">ID</th>
+                  <th className="px-4 py-2 border border-highlight-1 text-left">Name</th>
+                  <th className="px-4 py-2 border border-highlight-1 text-left">Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item: any) => (
+                  <tr key={item.id} className="bg-white hover:bg-yellow-50">
+                    <td className="px-4 py-2 border border-highlight-1">{item.id}</td>
+                    <td className="px-4 py-2 border border-highlight-1">{item.name}</td>
+                    <td className="px-4 py-2 border border-highlight-1">{item.category}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}        
+
       </div>
 
     </div>

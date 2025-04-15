@@ -29,7 +29,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", padding: "2rem" }}>
+    <div className="section" id="login-form">
       <h2>Login</h2>
       <input
         type="text"

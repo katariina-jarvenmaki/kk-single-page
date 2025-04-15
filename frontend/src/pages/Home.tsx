@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     
-    <div id="login-container">
+    <div className="container">
     
       <LoginForm />
     

@@ -2,8 +2,8 @@
 $primary-color: rgb(102, 69, 158) // 66459e
 $background-color: rgb(156, 184, 195) // 9cb8c3
 $shadow-color: rgb(32, 30, 44) // 201e2c
-$highlight-color1: #f0c11b // f0c11b
-$highlight-color2: #e76219 // e76219
+$highlight-color1: rgb(240, 193, 27) // f0c11b
+$highlight-color2: rgb(231, 98, 25)// e76219
 
 /*** CLEAN UP ***/
 
@@ -11,7 +11,6 @@ $highlight-color2: #e76219 // e76219
   margin-top: 0
 
 /*** TYPOGRAPHY ***/
-
 h2 
   color: $highlight-color1
 
@@ -25,6 +24,7 @@ button
   padding: 0.8rem 2rem
   color: 7px $shadow-color
   cursor: pointer
+  font-size: 11pt
 
 button:hover
   background: $highlight-color2
@@ -61,22 +61,28 @@ nav
 
 /*** LOGIN ***/
 
-#login-container
-  padding-top: 120px
+.container
+  padding-top: 100px
 
-  div
-    padding: 5rem 10rem 10rem
+  .section
     background: $primary-color !important
     border-radius: 15px
     position: relative
     box-shadow: 5px 5px 20px -7px $shadow-color
     border-bottom: 3px solid $highlight-color1
+    max-width: 1000px
+    margin: auto
+    padding: 2rem
+
+  #login-form
+       max-width: 400px !important
 
   input 
     padding: .5rem 0.25rem
     border-radius: 5px
     position: relative
     box-shadow: 5px 5px 20px -7px $shadow-color
+    font-size: 11pt
 
 button.logout
   position: absolute
@@ -85,3 +91,17 @@ button.logout
 
 .error 
   color: red
+
+table
+  width: 100%
+  border-collapse: collapse
+  margin-top: 1rem
+
+  th, td
+    border: 1px solid $highlight-color1
+    padding: 0.5rem
+    text-align: left
+    background-color: #fff
+
+  th
+    background-color: $highlight-color1
