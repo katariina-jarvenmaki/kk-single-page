@@ -135,7 +135,36 @@ Then destroy it:
 sudo kill -9 12345
 ```
 
-### Folder structure:
+## Architecture Overview
+
+## General Overview
+
+The system consists of a separate frontend (React) and backend (Spring Boot with Kotlin). The frontend communicates with the backend over a REST API. JWT-based authentication is in use.
+
+## Backend
+* Framework: Spring Boot 3.4.4 (Kotlin 1.9.25)
+* REST API:
+  * GET /api/items – fetches a list
+  * GET /api/items/{id} – fetches a single entry
+  * POST /api/items – adds a new entry
+  * GET /api/healthcheck – health check
+* Authentication: JWT-based, token validation handled at middleware level
+* No user registration yet; predefined hardcoded users
+* Data Storage:
+  * Initially in-memory/mock
+  * PostgreSQL planned for later
+
+## Frontend
+* Framework: React + TypeScript
+* SPA, uses fetch/axios calls to the backend
+* Login view and data view
+* Not yet; Data can be added and exported in CSV format
+
+## Development Infrastructure
+* Backend and frontend are developed as separate projects
+* Docker Compose-based runtime environment is a potential future setup
+
+### Folder structure
 ```bash
 /opt/kjc/int/kk-single-page/
 ├── backend/

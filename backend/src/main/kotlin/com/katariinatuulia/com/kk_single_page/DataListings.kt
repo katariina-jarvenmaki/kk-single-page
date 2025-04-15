@@ -1,5 +1,7 @@
 package com.katariinatuulia.com.kk_single_page.api
 
+//******************** IMPORTS ********************//
+
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -13,6 +15,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.http.HttpStatus
 
 data class DataEntry(val id: Int, val name: String, val category: String)
+
+//******************** APP ********************//
 
 @RestController
 @RequestMapping("/api/data")
@@ -77,6 +81,7 @@ class DataController {
         }
     }
 
+    // Add a record
     @PostMapping
     fun addData(@RequestBody newEntry: DataEntry): ResponseEntity<String> {
         if (data.any { it.id == newEntry.id }) {
@@ -86,7 +91,8 @@ class DataController {
         data.add(newEntry)
         return ResponseEntity("Data added", HttpStatus.CREATED)
     }
-    
+
+    // Delete a single entry
     @DeleteMapping("/{id}")
     fun deleteData(@PathVariable id: Int): ResponseEntity<String> {
         val removed = data.removeIf { it.id == id }
