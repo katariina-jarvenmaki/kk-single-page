@@ -22,7 +22,11 @@ const LoginForm = () => {
 
       const data = await res.json();
       localStorage.setItem("jwt", data.token);
+      localStorage.setItem("username", username);
+      /* Go to Dashboard */
       navigate("/dashboard");
+      window.location.reload();
+
     } catch (err) {
       setError("Login failed. Check credentials.");
     }

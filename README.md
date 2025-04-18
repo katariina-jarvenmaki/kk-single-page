@@ -160,7 +160,7 @@ The system consists of a separate frontend (React) and backend (Spring Boot with
 * No user registration yet; predefined hardcoded users
 * Data Storage:
   * Initially in-memory/mock
-  * PostgreSQL planned for later
+  * PostgreSQL added later
 
 ## Frontend
 * Framework: React + TypeScript

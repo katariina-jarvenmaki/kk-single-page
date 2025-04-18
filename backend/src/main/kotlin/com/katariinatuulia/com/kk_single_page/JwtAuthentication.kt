@@ -164,7 +164,7 @@ class AuthLoginController(
 
         if (user != null && user.password == authRequest.password) {
             val token = jwtTokens.generate(user.username)
-            return ResponseEntity.ok(mapOf("token" to token))
+            return ResponseEntity.ok(mapOf("token" to token, "username" to user.username))
         } else {
             return ResponseEntity.status(401).body("Invalid credentials")
         }
