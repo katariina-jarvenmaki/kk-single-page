@@ -151,27 +151,26 @@ class SecureController {
 
 @RestController
 @RequestMapping("/api/auth")
-class AuthLoginController(private val jwtTokens: JwtTokens) {
+class AuthLoginController(
+    private val jwtTokens: JwtTokens,
+    private val userRepository: UserRepository
+) {
 
     @PostMapping("/login")
     fun login(@RequestBody authRequest: AuthRequest): ResponseEntity<Any> {
 
         println("Login attempt: ${authRequest.username}")
+        val user = userRepository.findByUsername(authRequest.username)
 
-        val validUsers = mapOf(
-            "user" to "pass",
-            "admin" to "admin123",
-            "katariina" to "devpass"
-        )
-        
-        if (validUsers[authRequest.username] == authRequest.password) {
-            val token = jwtTokens.generate(authRequest.username)
+        if (user != null && user.password == authRequest.password) {
+            val token = jwtTokens.generate(user.username)
             return ResponseEntity.ok(mapOf("token" to token))
         } else {
             return ResponseEntity.status(401).body("Invalid credentials")
         }
     }    
 }
+
 
 //******************** CORS ********************//
 

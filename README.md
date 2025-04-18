@@ -34,7 +34,7 @@ Replace <command> with the specific one-liner command you want to execute.
 1. **Go to installation path**:
 
 ```bash
-cd /opt/kjc/int/kk-single-page
+cd /opt/kjc/int/kk-single-page/backend
 ```
 
 2. **Make a build**:
@@ -49,7 +49,15 @@ cd /opt/kjc/int/kk-single-page
 ./gradlew bootRun
 ```
 
-4. **To login on frontend**:
+4. **Serve frontend**:
+
+```bash
+cd /opt/kjc/int/kk-single-page/frontend
+npm install
+npm start
+```
+
+5. **To login on frontend**:
 
 Go to: http://localhost:3000/
 
@@ -59,11 +67,11 @@ Test accounts:
  - Username: admin, password: admin123
  ```
 
-5. **Using the endpoints on terminal**:
+6. **Using the endpoints on terminal**:
 
 First navigate with console into the project:
 ```bash
-cd /opt/kjc/int/kk-single-page
+cd /opt/kjc/int/kk-single-page/backend/
 ```
 
 Request token:
@@ -177,8 +185,9 @@ The system consists of a separate frontend (React) and backend (Spring Boot with
 │   │   │   │   ├── DataListings.kt
 │   │   │   │   ├── HealthController.kt
 │   │   │   │   ├── HomeContainer.kt
+│   │   │   │   ├── KkSinglePageApplication.kt
 │   │   │   │   ├── JwtAuthentication.kt
-│   │   │   │   └── KkSinglePageApplication.kt
+│   │   │   │   └── UserController.kt
 │   │   │   └── resources/
 │   │   │       └── application.properties                    
 │   │   └── test/kotlin/com/katariinatuulia/com/kk_single_page/
